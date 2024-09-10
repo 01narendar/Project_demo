@@ -1,0 +1,25 @@
+import numpy as np
+
+# Simulate temperature data for a week (7 days, 24 hours each day)
+# Generating random temperatures between 15°C and 35°C
+temperatures = np.random.uniform(15, 35, size=(7, 24))
+
+# 1. Calculate the average temperature for each day
+average_daily_temps = temperatures.mean(axis=1)
+print("Average daily temperatures (°C):", np.round(average_daily_temps, 2))
+
+# 2. Find the hottest temperature of the week
+max_temp = temperatures.max()
+print("Hottest temperature of the week (°C):", np.round(max_temp, 2))
+
+# 3. Find the coldest temperature of the week
+min_temp = temperatures.min()
+print("Coldest temperature of the week (°C):", np.round(min_temp, 2))
+
+# 4. Calculate the temperature difference for each day (max - min)
+daily_temp_diff = temperatures.max(axis=1) - temperatures.min(axis=1)
+print("Temperature difference for each day (°C):", np.round(daily_temp_diff, 2))
+
+# 5. Overall average temperature for the week
+overall_average = temperatures.mean()
+print("Overall average temperature for the week (°C):", np.round(overall_average, 2))
