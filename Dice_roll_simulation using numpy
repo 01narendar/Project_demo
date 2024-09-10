@@ -1,0 +1,34 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Step 1: Set the number of simulations
+num_rolls = 1000  # Total number of dice rolls
+
+# Step 2: Simulate rolling two dice
+# Each die can roll a number between 1 and 6
+die_1 = np.random.randint(1, 7, size=num_rolls)  # First die
+die_2 = np.random.randint(1, 7, size=num_rolls)  # Second die
+
+# Step 3: Calculate the sum of the two dice for each roll
+dice_sum = die_1 + die_2
+
+# Step 4: Count the occurrences of each possible sum (2 to 12)
+sum_counts = np.bincount(dice_sum)[2:]  # Ignore the 0 and 1 bins (impossible sums)
+
+# Step 5: Print out the result of the count for each possible sum
+possible_sums = np.arange(2, 13)  # Possible sums from 2 to 12
+for s, count in zip(possible_sums, sum_counts):
+    print(f"Sum {s}: {count} occurrences")
+
+# Step 6: Visualize the results with a histogram
+plt.figure(figsize=(8, 5))
+plt.bar(possible_sums, sum_counts, color='skyblue', edgecolor='black')
+plt.title('Dice Roll Simulation: Sum of Two Dice Over 1000 Rolls')
+plt.xlabel('Sum of Dice')
+plt.ylabel('Frequency')
+plt.xticks(possible_sums)  # Set x-axis labels to be the possible sums
+plt.grid(True, axis='y')
+
+# Show the plot
+plt.tight_layout()
+plt.show()
