@@ -1,0 +1,47 @@
+import numpy as np
+
+# Simulate the grades of 5 students across 4 subjects
+# Generating random grades between 50 and 100 for each subject
+grades = np.random.randint(50, 101, size=(5, 4))
+
+# 1. Display the grades
+print("Grades of students (rows: students, columns: subjects):")
+print(grades)
+
+# 2. Calculate the average grade for each student
+average_student_grades = grades.mean(axis=1)
+print("\nAverage grades for each student:", np.round(average_student_grades, 2))
+
+# 3. Calculate the average grade for each subject
+average_subject_grades = grades.mean(axis=0)
+print("Average grades for each subject:", np.round(average_subject_grades, 2))
+
+# 4. Find the highest grade in the class
+max_grade = grades.max()
+print("Highest grade in the class:", max_grade)
+
+# 5. Find the lowest grade in the class
+min_grade = grades.min()
+print("Lowest grade in the class:", min_grade)
+
+# 6. Find the student with the highest average grade
+best_student_index = np.argmax(average_student_grades)
+print("\nBest student is Student", best_student_index + 1, "with an average grade of", 
+      np.round(average_student_grades[best_student_index], 2))
+
+# 7. Find the subject with the highest average score
+best_subject_index = np.argmax(average_subject_grades)
+print("Best subject is Subject", best_subject_index + 1, "with an average score of", 
+      np.round(average_subject_grades[best_subject_index], 2))
+
+# 8. Calculate the overall class average
+overall_class_average = grades.mean()
+print("Overall class average grade:", np.round(overall_class_average, 2))
+
+# 9. Identify students who passed (average >= 60)
+passed_students = np.where(average_student_grades >= 60)[0] + 1  # +1 for 1-based indexing
+print("\nStudents who passed (average >= 60):", passed_students)
+
+# 10. Identify students who failed (average < 60)
+failed_students = np.where(average_student_grades < 60)[0] + 1
+print("Students who failed (average < 60):", failed_students)
